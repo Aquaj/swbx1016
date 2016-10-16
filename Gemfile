@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby 2.3
+
 gem 'middleman'
 gem 'middleman-favicon-maker'
 gem 'middleman-livereload'
