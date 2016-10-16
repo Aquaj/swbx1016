@@ -1,0 +1,84 @@
+---
+title: Urbagri project - SWBX
+description: Venez voir comme qu'on avance yo !
+---
+
+:ruby
+	client = Twitter::REST::Client.new do |config|
+	  config.consumer_key        = ENV["TWITTER_KEY"]
+	  config.consumer_secret     = ENV["TWITTER_KEY_SECRET"]
+	  config.access_token        = ENV["TWITTER_TOKEN"]
+	  config.access_token_secret = ENV["TWITTER_TOKEN_SECRET"]
+	end
+
+	recent_phototweets = client.search("from:Akwajawk @FrenchTechBx #SWBX filter:media", result_type: :recent, tweet_mode: :extended).sort_by { |tw| tw.attrs[:created_at] }
+	periscopes = client.search("from:Akwajawk filter:periscope", result_type: :recent, tweet_mode: :extended).sort_by { |tw| tw.attrs[:created_at] }
+	last_periscope = periscopes.last
+
+%header
+	.hero-bg
+		.hero-content
+			.title
+				%h2= "URBAGRI"
+			%h3= "On est plus cools que toi mais on t'aime quand même."
+			%h4= "Parce qu'on est pas des crevards."
+			.btn-container
+				%a.down.btn{href: '#content'}= "Viens donc voir où on en est !"
+				%a.animated.pulse.infinite.down{href: '#content'}
+					%i.fa.fa-angle-double-down
+
+.content#content
+	.content-header
+		.header-title
+			%h3= "La fine équipe"
+		.portraits
+			- 11.times do |n|
+				= image_tag((1+n).to_s+'.jpg', class: 'portrait')
+	.container-columns
+		.column.twitter-feed
+			%h4.header
+				= "Les gens qui parlent de nous"
+				%br
+				= "(on les aime d'amour)"
+			.feed
+				%a.twitter-timeline{href: "https://twitter.com/search?q=Urbagri%20%23SWBX", data: { "widget-id":"787174299018924033", chrome: "noheader nofooter noborder transparent" }}
+					= "Tweets about Urbagri #SWBX"
+		.column.media-content
+			- last_phototweet = recent_phototweets.last
+			.cell.media-periscope
+				%h4.header= "Periscope"
+				.periscope
+					= (client.oembed(last_periscope.attrs[:id], hide_tweet: true, widget_type: 'periscope').html)
+			.cell.media-phototweet
+				%h4.header
+					= "Le Livetweet de Jérémie"
+					%br
+					="54h #nosleep #noscope"
+				.tweet
+					= (client.oembed(last_phototweet.attrs[:id], omit_script: true).html)
+
+		.column.chart-slideshow
+			%h4.header
+				= "Comment que ça évolue pour nous."
+			.progress-chart
+				.charts.js-slider
+					:ruby
+						to_add = DateTime.new(2016, 10, 14, 18, 00)
+						range_date = []
+						max_time = DateTime.now
+						tstep = 1.0/3/24
+						while to_add <= max_time
+							range_date << to_add.dup
+							to_add += tstep
+						end
+						indices = range_date.map.with_index { |_d, i| i }
+					%ul
+						%li= spline_highcharts [{data: indices.map { |v| v**3 }}], title: "L'importance d'un nom", x_axis: { title: {text: "Temps"}, categories: range_date.map { |time| time.strftime('%d/%m - %H:%M')}}, y_axis: {title: {text: "Soucis"}, labels: {enabled: false}}
+						
+						%li= spline_highcharts [{data: indices.map { |v| Math.log(v) + v**1.5 }}], title: "Le Progrès au fil du temps", x_axis: { title: {text: "Temps"}, categories: range_date.map { |time| time.strftime('%d/%m - %H:%M')}}, y_axis: {title: {text: 'Avancées'}, labels: {enabled: false}}
+						
+						%li= spline_highcharts [{data: indices.map { |v| v**1.7 + Math.log(v) }}], title: 'Les tweets au fil du temps', x_axis: { title: {text: 'Temps'}, categories: range_date.map { |time| time.strftime('%d/%m - %H:%M')}}, y_axis: {title: {text: 'Tweets de merde'}, labels: {enabled: false}}
+						
+						%li= spline_highcharts [{data: range_date.map { |d| d.hash + Time.now.hash }}], title: '?????', x_axis: { title: {text: 'Temps'}, categories: range_date.map { |time| time.strftime('%d/%m - %H:%M')}}, y_axis: {title: {text: nil}, labels: {enabled: false}}
+:plain
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
