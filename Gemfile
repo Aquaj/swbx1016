@@ -9,6 +9,8 @@ gem 'addressable'
 gem 'rake'
 gem 'twitter'
 gem 'dotenv'
-gem 'byebug'
+gem 'rack-contrib'
+
+gem 'byebug', group: :development
 
 gem 'puma', '~> 2.7'

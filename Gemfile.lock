@@ -47,6 +47,7 @@ GEM
     ffi (1.9.6)
     font-awesome-sass (4.6.2)
       sass (>= 3.2)
+    git-version-bump (0.15.1)
     haml (4.0.6)
       tilt
     hike (1.2.3)
@@ -119,6 +120,9 @@ GEM
     puma (2.11.0)
       rack (>= 1.1, < 2.0)
     rack (1.6.0)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-livereload (0.3.15)
       rack
     rack-test (0.6.3)
@@ -179,6 +183,7 @@ DEPENDENCIES
   middleman-favicon-maker
   middleman-livereload
   puma (~> 2.7)
+  rack-contrib
   rake
   susy
   twitter

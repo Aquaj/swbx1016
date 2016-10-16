@@ -1,3 +1,5 @@
 .bundle
 .byebug_history
 .env
+build/*
+build/**/*
