@@ -1,0 +1,25 @@
+fr:
+  locales:
+    en: EN
+    fr: FR
+
+  sections:
+    engagements: Nos engagements
+    container: Le container
+    find_us: Où trouver nos produits
+
+  tagline: Nous cultivons en ville les fruits et légumes les plus savoureux et les plus sains que vous puissiez trouver.
+  call_to_action: Venez déguster
+
+  selling_points: |
+    Goût
+    Qualité
+    Proximité
+    Transparence
+  container_desc: Installés en bas de chez vous, les containers créent
+    un environnement protégé idéal au développement de nos
+    fruits et légumes.
+
+  make_message: Çoncu et réalisé [avec amour] durant le Startup Weekend Bordeaux - 10/2016
+
+  our_containers: Nos containers

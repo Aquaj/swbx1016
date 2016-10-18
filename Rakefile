@@ -1,14 +1,6 @@
-namespace :assets do
-  task :precompile do
-    sh 'middleman build --verbose'
-  end
-end
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-namespace :env do
-  task :push do
-    File.readlines(args[:env_file]).map(&:strip).each do |value|
-      next if value.first '#'
-      Kernel.system "heroku config:set #{value}"
-    end
-  end
-end
+require File.expand_path('../config/application', __FILE__)
+
+Rails.application.load_tasks

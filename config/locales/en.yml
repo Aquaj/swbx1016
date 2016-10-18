@@ -1,0 +1,25 @@
+en:
+  locales:
+    en: EN
+    fr: FR
+
+  sections:
+    engagements: What we're committed to
+    container: The container
+    find_us: Where to find our products
+
+  tagline: Our fruits and vegetables are the tastiest and healthiest you can get, and they're in urban areas.
+  call_to_action: Come and taste them
+
+  selling_points: |
+    Taste
+    Quality
+    Proximity
+    Transparency
+  container_desc: Installed right around your block, our containers
+    are an ideal, safe environment to ensure the best
+    development to our fruits and vegetables.
+
+  make_message: Designed and built [with love] during Bordeaux Startup Weekend - 10/2016
+
+  our_containers: Our containers
